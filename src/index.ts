@@ -4,6 +4,7 @@ import cors from 'cors'
 import { connectDB } from './services/db'
 import webhookRouter from './routes/webhook'
 import contactRouter from './routes/contact'
+import { setupSwagger } from './swagger'
 
 const app = express()
 const PORT = process.env.PORT ?? 3001
@@ -29,6 +30,9 @@ app.use('/api', contactRouter)
 app.get('/health', (_req, res) => {
   res.json({ status: 'ok', env: process.env.NODE_ENV })
 })
+
+// Setup Swagger API Docs
+setupSwagger(app)
 
 async function main() {
   await connectDB()
