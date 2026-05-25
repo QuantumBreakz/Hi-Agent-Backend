@@ -1,0 +1,19 @@
+services:
+  - type: web
+    name: hi-agent-backend
+    env: node
+    buildCommand: npm install && npm run build
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: MONGODB_URI
+        sync: false
+      - key: MONGODB_DB_NAME
+        value: hi-agent
+      - key: VAPI_WEBHOOK_SECRET
+        sync: false
+      - key: RESEND_API_KEY
+        sync: false
+      - key: NOTIFICATION_EMAIL
+        value: hassan@smartlogicsllc.com
