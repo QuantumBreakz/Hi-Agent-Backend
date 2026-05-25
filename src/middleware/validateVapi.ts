@@ -13,18 +13,13 @@ export function validateVapiSignature(req: Request, res: Response, next: NextFun
     return
   }
 
-  const signature = req.headers['x-vapi-secret'] as string | undefined
-  if (!signature) {
+  const providedSecret = req.headers['x-vapi-secret'] as string | undefined
+  if (!providedSecret) {
     res.status(401).json({ error: 'Missing webhook signature' })
     return
   }
 
-  const expected = crypto
-    .createHmac('sha256', secret)
-    .update(req.body as Buffer)
-    .digest('hex')
-
-  if (!crypto.timingSafeEqual(Buffer.from(signature), Buffer.from(expected))) {
+  if (providedSecret !== secret) {
     res.status(401).json({ error: 'Invalid webhook signature' })
     return
   }
