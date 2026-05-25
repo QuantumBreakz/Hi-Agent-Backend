@@ -46,9 +46,9 @@ npm run dev
 The server will run on `http://localhost:3001`.
 
 ### Simulating a Call Webhook locally
-If you want to test the email notification and database saving without making an actual phone call, you can run the mock seed script from the root repository:
+If you want to test the email notification and database saving without making an actual phone call, you can run the mock seed script:
 ```bash
-npx ts-node ../database/seeds/test-call-log.ts
+npx ts-node src/scripts/seed.ts
 ```
 
 ---
