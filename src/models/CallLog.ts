@@ -12,6 +12,7 @@ const CallLogSchema = new Schema(
       enum: ['interested', 'not_interested', 'emergency', 'unknown'],
       default: 'unknown',
     },
+    status: { type: String },
     endedAt: { type: Date },
   },
   { timestamps: true }
