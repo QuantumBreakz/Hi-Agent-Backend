@@ -70,3 +70,33 @@ src/
 └── middleware/
     └── validateVapi.ts      # Verifies the VAPI_WEBHOOK_SECRET
 ```
+
+---
+
+## 📖 API Documentation
+
+### 1. `POST /webhook/vapi`
+Handles the end-of-call webhook from Vapi.ai.
+- **Headers Required:** `x-vapi-secret` (Must match `VAPI_WEBHOOK_SECRET`)
+- **Body Payload:** Requires a Vapi `call` object containing `customer.number`, `startedAt`, `endedAt`, `transcript`, and `summary`.
+- **What it does:** 
+  1. Computes the call duration.
+  2. Saves the full structured call to the MongoDB `CallLog` collection.
+  3. Uses Resend to email the full transcript & summary to the owner.
+
+### 2. `POST /api/contact`
+Handles form submissions from the frontend "Contact Us" page.
+- **Headers Required:** None (Public endpoint, CORS protected)
+- **Body Payload:**
+  ```json
+  {
+    "name": "John Doe",
+    "businessName": "Doe Plumbing",
+    "email": "john@example.com",
+    "phone": "555-1234",
+    "message": "I need an AI voice agent."
+  }
+  ```
+- **What it does:**
+  1. Saves the contact form data into the MongoDB `ContactForm` collection.
+  2. Sends an instant email notification to the owner about the new lead.
