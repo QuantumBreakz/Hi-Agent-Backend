@@ -100,3 +100,9 @@ Handles form submissions from the frontend "Contact Us" page.
 - **What it does:**
   1. Saves the contact form data into the MongoDB `ContactForm` collection.
   2. Sends an instant email notification to the owner about the new lead.
+
+## Write-ups
+
+- [Securing a voice AI agent's webhook: what this version got right, and what I'd change](https://aliahmed.si/blog/voice-ai-webhook-security/)
+
+By [Ali Ahmed](https://aliahmed.si), AI engineer.
